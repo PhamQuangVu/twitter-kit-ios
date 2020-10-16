@@ -623,8 +623,12 @@ static void *TSETweetTextKVOCOntext = &TSETweetTextKVOCOntext;
 
 - (void)setAutoCompletionResultsVisible:(BOOL)visible
 {
-    NSParameterAssert([self isAutoCompletionAvailable]);
+    //NSParameterAssert([self isAutoCompletionAvailable]);
 
+    if (![self isAutoCompletionAvailable]) {
+        return;
+    }
+    
     if ([self isAutoCompletionResultsDisplayAllowed] && visible != _autoCompletionResultsVisible) {
         // self.autoCompletionResultsViewControllerCalculatedFrame relies on _autocompletionResultsVisible,
         // so call the method to calculate the frame before animation before the var it relies on changes
